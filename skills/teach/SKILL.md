@@ -48,7 +48,7 @@ Fluency can give the user an illusory sense of mastery, but storage strength is 
 
 A lesson is the main thing you produce: the unit in which knowledge and skills reach the user. Each lesson is one self-contained HTML file, saved to `./lessons/` and titled `0001-<dash-case-name>.html` where the number increments each time.
 
-A lesson should be **beautiful**, with clean, readable typography and layout, since the user will return to these later to review. Think Tufte.
+A lesson should be **beautiful**, with clean, readable typography and layout, since the user will return to these later to review. Think Tufte. **Every lesson uses the Material Design dark theme (Material 3 dark palette)** — dark surfaces, Material color-system primary/accent tones, elevation via surface tints. This is a hard requirement: no light themes, no ad-hoc color schemes. The shared stylesheet in `./assets/` implements the theme; every lesson links it.
 
 The lesson should be short, and completable very quickly. Learners' working memory is very small, and we need to stay within it. But each lesson should give the user a single tangible win that they can build on. It should be directly tied to the mission, and should be in the user's zone of proximal development.
 
@@ -58,7 +58,7 @@ If possible, open the lesson file for the user by running a CLI command.
 
 Lessons are HTML, so the user reviews them in a browser — keep the lessons directory **served over HTTP** so every lesson has a stable URL:
 
-- After writing or updating a lesson, start a static file server on the workspace's `./lessons/` directory — e.g. `python3 -m http.server 8000 --directory ./lessons` (add `--bind 0.0.0.0` inside a container) — and give the user the URL (`http://localhost:8000/<lesson-file>.html`).
+- After writing or updating a lesson, serve the workspace's `./lessons/` directory with **Caddy** — `caddy file-server --root ./lessons --listen :8080` (or a `Caddyfile` with `root * ./lessons` and `file_server`; inside a container, listen on a host-reachable address) — and give the user the URL (`http://localhost:8080/<lesson-file>.html`).
 - If the user has a dedicated served directory for lessons (a web root they already serve), write lessons there instead of `./lessons/` and use that URL. Record which directory is served in `NOTES.md` so every session serves the same place.
 - At the start of each session, check whether the server is still running and restart it if not, then continue with the same URL.
 
@@ -74,7 +74,7 @@ Lessons are built from reusable **components**, stored in `./assets/`: styleshee
 
 Reuse is the default, not the exception. Before authoring a lesson, read `./assets/` and build from the components already there. When a lesson needs something new and reusable, write it as a component in `./assets/` and link to it; never inline code a future lesson would duplicate.
 
-A shared stylesheet is the first component every workspace earns: every lesson links it, so the lessons look like one consistent course rather than a pile of one-offs. As the workspace grows, so should the component library.
+A shared stylesheet is the first component every workspace earns: it implements the Material Design dark theme, and every lesson links it, so the lessons look like one consistent Material-dark course rather than a pile of one-offs. As the workspace grows, so should the component library.
 
 ## The Mission
 
