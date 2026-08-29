@@ -22,7 +22,13 @@ The map is a single issue on this repo's issue tracker, labelled `wayfinder:map`
 
 The map is an **index**, not a store. It lists the decisions made and points at the tickets that hold their detail; a decision lives in exactly one place, its ticket, so the map never restates it, only gists it and links.
 
-**Where the map, its child tickets, blocking, and frontier queries physically live is tracker-specific.** The issue tracker should have been provided to you. If not, tell the user to run `/setup-matt-pocock-skills`. Consult the tracker doc's "Wayfinding operations" section for how _this_ repo expresses them. If no tracker has been provided, default to GitHub issues (via the `gh` CLI).
+**Where the map, its child tickets, blocking, and frontier queries physically live is tracker-specific.** This repo uses **GitHub issues** (via the `gh` CLI):
+
+- **Map**: a single issue labelled `wayfinder:map` (`gh issue create --label wayfinder:map`).
+- **Child tickets**: issues linked to the map as GitHub sub-issues (`gh api` on the sub-issues endpoint); where sub-issues aren't enabled, add the child to a task list in the map body and put `Part of #<map>` at the top of the child body. Labels: `wayfinder:<type>` (`research`/`prototype`/`grilling`/`task`).
+- **Blocking**: native issue dependencies (`gh api --method POST repos/<owner>/<repo>/issues/<child>/dependencies/blocked_by -F issue_id=<blocker-db-id>`, where the id is the numeric database id, not the `#number`); where unavailable, a `Blocked by: #<n>, #<n>` line at the top of the child body. A ticket is unblocked when every blocker is closed.
+- **Frontier query**: the map's open children (`gh issue list --state open`), dropping any with an open blocker or an assignee; first in map order wins.
+- **Claim**: `gh issue edit <n> --add-assignee @me`. **Resolve**: comment the answer (`gh issue comment <n>`), close the issue, then append a context pointer to the map's Decisions-so-far.
 
 ### The map body
 
