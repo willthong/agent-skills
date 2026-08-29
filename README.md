@@ -8,7 +8,7 @@ This repo mirrors [mattpocock/skills](https://github.com/mattpocock/skills) — 
 
 Localizations applied on top of upstream:
 
-- **Issue tracking → GitHub**: skills assume GitHub issues (via the `gh` CLI) with the canonical triage labels. The `setup-matt-pocock-skills` per-repo config skill was removed (its GitLab/local-markdown options were never mirrored); `wayfinder` inlines the GitHub wayfinding operations directly.
+- **Issue tracking → GitHub**: skills assume GitHub issues (via the `gh` CLI) with the canonical triage labels; `wayfinder` inlines the GitHub wayfinding operations directly.
 - **Skill loading → pi**: "call the Skill tool with X" phrasing is rewritten as "load the `X` skill" (pi loads skills by reading their `SKILL.md`). Category README harness notes referenced pi's `disable-model-invocation`.
 - **Removed-skill references trimmed**: `ask-matt` (the router) routes only over shipped skills. The `grilling` interview primitive (from upstream's `productivity/` category) is included alongside the engineering skills because several of them load it.
 
