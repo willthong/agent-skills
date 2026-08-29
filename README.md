@@ -4,7 +4,7 @@ Skills for the [pi coding agent](https://pi.dev), distributed as a git package.
 
 ## Provenance
 
-This repo mirrors [mattpocock/skills](https://github.com/mattpocock/skills) — the engineering skills plus `teach` (from upstream's `productivity/` category), copied from upstream at the top level of `skills/`, replacing the previously customized local content. The rest of `productivity/`, `in-progress/`, and `misc/` are intentionally not mirrored. Last synced from upstream commit `6654f6b` (2026-08-24).
+This repo mirrors [mattpocock/skills](https://github.com/mattpocock/skills) — the engineering skills plus `teach` and `writing-for-agents` (from upstream's `productivity/` category), copied from upstream at the top level of `skills/`, replacing the previously customized local content. The rest of `productivity/`, `in-progress/`, and `misc/` are intentionally not mirrored. Last synced from upstream commit `6654f6b` (2026-08-24).
 
 Localizations applied on top of upstream:
 
@@ -14,7 +14,7 @@ Localizations applied on top of upstream:
 
 ## Skills
 
-`ask-matt`, `code-review`, `codebase-design`, `diagnosing-bugs`, `domain-modeling`, `grill-with-docs`, `grilling`, `implement`, `improve-codebase-architecture`, `prototype`, `research`, `resolving-merge-conflicts`, `tdd`, `teach`, `to-spec`, `to-tickets`, `triage`, `wayfinder`, `wizard`
+`ask-matt`, `code-review`, `codebase-design`, `diagnosing-bugs`, `domain-modeling`, `grill-with-docs`, `grilling`, `implement`, `improve-codebase-architecture`, `prototype`, `research`, `resolving-merge-conflicts`, `tdd`, `teach`, `to-spec`, `to-tickets`, `triage`, `wayfinder`, `wizard`, `writing-for-agents`
 
 See each skill's `SKILL.md` and `ask-matt` (the router) for when to use them.
 
