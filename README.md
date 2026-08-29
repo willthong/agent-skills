@@ -4,30 +4,19 @@ Skills for the [pi coding agent](https://pi.dev), distributed as a git package.
 
 ## Provenance
 
-This repo mirrors [mattpocock/skills](https://github.com/mattpocock/skills) — **all 37 skills** across `engineering/`, `productivity/`, `in-progress/`, and `misc/` are copied from upstream, replacing the previously customized local content. Last synced from upstream commit `6654f6b` (2026-08-24).
+This repo mirrors [mattpocock/skills](https://github.com/mattpocock/skills) — **all 18 engineering skills**, copied from upstream at the top level of `skills/`, replacing the previously customized local content. The `productivity/`, `in-progress/`, and `misc/` categories are intentionally not mirrored. Last synced from upstream commit `6654f6b` (2026-08-24).
 
 Localizations applied on top of upstream:
 
 - **Issue tracking → GitHub**: `setup-matt-pocock-skills` proposes GitHub issues (via the `gh` CLI) as the only tracker; the GitLab and local-markdown tracker options/templates were removed. `wayfinder` defaults to GitHub issues when no tracker is configured.
-- **Skill loading → pi**: "call the Skill tool with X" phrasing is rewritten as "load the `X` skill" (pi loads skills by reading their `SKILL.md`). Harness notes in category READMEs reference pi's `disable-model-invocation` instead of Claude Code / Codex mechanics.
-
-Kept as-shipped (explicitly harness-specific upstream, not vague): `misc/git-guardrails-claude-code` (Claude Code hooks) and `in-progress/claude-handoff` (`claude --bg`). Upstream's `skills/deprecated/` bucket is empty, so it is not mirrored.
+- **Skill loading → pi**: "call the Skill tool with X" phrasing is rewritten as "load the `X` skill" (pi loads skills by reading their `SKILL.md`). Category README harness notes referenced pi's `disable-model-invocation`.
+- **Removed-skill references trimmed**: `ask-matt` (the router) routes only over shipped skills; the `grilling` primitive (in the dropped `productivity/` category) is referenced as an interview style rather than a loadable skill.
 
 ## Skills
 
-### Engineering
 `ask-matt`, `code-review`, `codebase-design`, `diagnosing-bugs`, `domain-modeling`, `grill-with-docs`, `implement`, `improve-codebase-architecture`, `prototype`, `research`, `resolving-merge-conflicts`, `setup-matt-pocock-skills`, `tdd`, `to-spec`, `to-tickets`, `triage`, `wayfinder`, `wizard`
 
-### Productivity
-`grill-me`, `grilling`, `handoff`, `teach`, `to-questionnaire`, `wait-what`, `writing-for-agents`
-
-### In progress (beta)
-`claude-handoff`, `implement-spec`, `loop-me`, `retro`, `setup-ts-deep-modules`, `writing-beats`, `writing-fragments`, `writing-shape`
-
-### Misc
-`git-guardrails-claude-code`, `migrate-to-shoehorn`, `scaffold-exercises`, `setup-pre-commit`
-
-See the category `README.md` files for one-line descriptions of each.
+See each skill's `SKILL.md` and `ask-matt` (the router) for when to use them.
 
 ## Install
 
