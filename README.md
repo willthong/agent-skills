@@ -19,12 +19,12 @@ Add the package to Pi settings (`~/.pi/agent/settings.json` for global, `.pi/set
 
 ```json
 {
-  "packages": ["https://github.com/willthong/agent-skills@v1"]
+  "packages": ["https://github.com/willthong/agent-skills"]
 }
 ```
 
-- Pin a tag or commit ref; pinned refs are never moved by `pi update`.
-- Bump deliberately: `pi install git:github.com/willthong/agent-skills@new-ref`
+- Without a ref, Pi tracks the default branch (`main`) and pulls the latest commit on `pi update` / `pi update --extensions`.
+- To pin for reproducibility, append a tag or commit ref (e.g. `@v1`); pinned refs are reconciled but never moved by updates. Bump deliberately with `pi install git:github.com/willthong/agent-skills@new-ref`.
 - Pi clones the package to `~/.pi/agent/git/github.com/willthong/agent-skills`.
 - For container setups, `entrypoint.sh` runs `pi update --extensions` on start so the clone refreshes on every `docker compose up -d` (see [pi-contained](https://github.com/willthong/pi-contained)).
 
