@@ -15,7 +15,7 @@ Treat the current directory as a teaching workspace. The state of their learning
 - `./reference/*.html`: A directory of reference materials. These are the compressed learnings from the lessons - cheat sheets, reference algorithms, syntax, yoga poses, glossaries. They are the raw units of learning. They should be beautiful documents which print out well, and are designed for quick reference.
 - `RESOURCES.md`: A list of resources which can be explored to ground your teaching in contextual knowledge, or to acquire knowledge and wisdom. Use the format in [RESOURCES-FORMAT.md](./RESOURCES-FORMAT.md).
 - `./learning-records/*.md`: A directory of learning records, which capture what the user has learned. These are loosely equivalent to architectural decision records in software development - they capture non-obvious lessons and key insights that may need to be revised later, or drive future sessions. These should be used to calculate the zone of proximal development. They are titled `0001-<dash-case-name>.md`, where the number increments each time. Use the format in [LEARNING-RECORD-FORMAT.md](./LEARNING-RECORD-FORMAT.md).
-- `./lessons/*.html`: A directory of lessons. A **lesson** is a single, self-contained HTML output that teaches one tightly-scoped thing tied to the mission. This is the primary unit of teaching in this workspace.
+- `/root/textbook/*.html`: The web root where lessons are stored. A **lesson** is a single, self-contained HTML output that teaches one tightly-scoped thing tied to the mission. This is the primary unit of teaching in this workspace. All lesson HTML is written to `/root/textbook/` so it is ready to be served.
 - `./assets/*`: Reusable **components** shared across lessons. See [Assets](#assets).
 - `NOTES.md`: A scratchpad for you to jot down user preferences, or working notes.
 
@@ -46,7 +46,7 @@ Fluency can give the user an illusory sense of mastery, but storage strength is 
 
 ## Lessons
 
-A lesson is the main thing you produce: the unit in which knowledge and skills reach the user. Each lesson is one self-contained HTML file, saved to `./lessons/` and titled `0001-<dash-case-name>.html` where the number increments each time.
+A lesson is the main thing you produce: the unit in which knowledge and skills reach the user. Each lesson is one self-contained HTML file, saved to `/root/textbook/` (ready to be served) and titled `0001-<dash-case-name>.html` where the number increments each time.
 
 A lesson should be **beautiful**, with clean, readable typography and layout, since the user will return to these later to review. Think Tufte. **Every lesson uses the Material Design dark theme (Material 3 dark palette)** — dark surfaces, Material color-system primary/accent tones, elevation via surface tints. This is a hard requirement: no light themes, no ad-hoc color schemes. The shared stylesheet in `./assets/` implements the theme; every lesson links it.
 
@@ -56,10 +56,9 @@ If possible, open the lesson file for the user by running a CLI command.
 
 ## Serving lessons
 
-Lessons are HTML, so the user reviews them in a browser — keep the lessons directory **served over HTTP** so every lesson has a stable URL:
+Lessons are HTML, so the user reviews them in a browser — the lessons are stored in `/root/textbook/`, which is **served over HTTP** so every lesson has a stable URL:
 
-- After writing or updating a lesson, serve the workspace's `./lessons/` directory with **Caddy** — `caddy file-server --root ./lessons --listen :8080` (or a `Caddyfile` with `root * ./lessons` and `file_server`; inside a container, listen on a host-reachable address) — and give the user the URL (`http://localhost:8080/<lesson-file>.html`).
-- If the user has a dedicated served directory for lessons (a web root they already serve), write lessons there instead of `./lessons/` and use that URL. Record which directory is served in `NOTES.md` so every session serves the same place.
+- All lesson HTML is written to `/root/textbook/` so it is ready to be served. After writing or updating a lesson, serve `/root/textbook/` with **Caddy** — `caddy file-server --root /root/textbook --listen :8080` (or a `Caddyfile` with `root * /root/textbook` and `file_server`; inside a container, listen on a host-reachable address) — and give the user the URL (`http://localhost:8080/<lesson-file>.html`).
 - At the start of each session, check whether the server is still running and restart it if not, then continue with the same URL.
 
 Each lesson should link via HTML anchors to other lessons and reference documents.
@@ -72,7 +71,7 @@ Each lesson should contain a reminder to ask followup questions to the agent. Th
 
 Lessons are built from reusable **components**, stored in `./assets/`: stylesheets, quiz widgets, simulators, diagram helpers, and anything else a second lesson could reuse.
 
-Reuse is the default, not the exception. Before authoring a lesson, read `./assets/` and build from the components already there. When a lesson needs something new and reusable, write it as a component in `./assets/` and link to it; never inline code a future lesson would duplicate.
+Reuse is the default, not the exception. Before authoring a lesson, read `./assets/` and build from the components already there. When a lesson needs something new and reusable, write it as a component in `./assets/` and link to it; never inline code a future lesson would duplicate. Because lessons are served from `/root/textbook/`, any component file a lesson links to must also be placed there (or copied from `./assets/` into it) so the link resolves over HTTP.
 
 A shared stylesheet is the first component every workspace earns: it implements the Material Design dark theme, and every lesson links it, so the lessons look like one consistent Material-dark course rather than a pile of one-offs. As the workspace grows, so should the component library.
 
