@@ -10,11 +10,11 @@ Localizations applied on top of upstream:
 
 - **Issue tracking → GitHub**: `setup-matt-pocock-skills` proposes GitHub issues (via the `gh` CLI) as the only tracker; the GitLab and local-markdown tracker options/templates were removed. `wayfinder` defaults to GitHub issues when no tracker is configured.
 - **Skill loading → pi**: "call the Skill tool with X" phrasing is rewritten as "load the `X` skill" (pi loads skills by reading their `SKILL.md`). Category README harness notes referenced pi's `disable-model-invocation`.
-- **Removed-skill references trimmed**: `ask-matt` (the router) routes only over shipped skills; the `grilling` primitive (in the dropped `productivity/` category) is referenced as an interview style rather than a loadable skill.
+- **Removed-skill references trimmed**: `ask-matt` (the router) routes only over shipped skills. The `grilling` interview primitive (from upstream's `productivity/` category) is included alongside the engineering skills because several of them load it.
 
 ## Skills
 
-`ask-matt`, `code-review`, `codebase-design`, `diagnosing-bugs`, `domain-modeling`, `grill-with-docs`, `implement`, `improve-codebase-architecture`, `prototype`, `research`, `resolving-merge-conflicts`, `setup-matt-pocock-skills`, `tdd`, `to-spec`, `to-tickets`, `triage`, `wayfinder`, `wizard`
+`ask-matt`, `code-review`, `codebase-design`, `diagnosing-bugs`, `domain-modeling`, `grill-with-docs`, `grilling`, `implement`, `improve-codebase-architecture`, `prototype`, `research`, `resolving-merge-conflicts`, `setup-matt-pocock-skills`, `tdd`, `to-spec`, `to-tickets`, `triage`, `wayfinder`, `wizard`
 
 See each skill's `SKILL.md` and `ask-matt` (the router) for when to use them.
 
